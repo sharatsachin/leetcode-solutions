@@ -1,0 +1,10 @@
+// https://leetcode.com/problems/nth-highest-salary
+
+CREATE OR REPLACE FUNCTION NthHighestSalary(N INT) RETURNS TABLE (Salary INT) AS $$
+BEGIN
+  RETURN QUERY (
+    -- Write your PostgreSQL query statement below.
+    SELECT DISTINCT Employee.Salary FROM Employee ORDER BY Salary DESC LIMIT 1 OFFSET N - 1
+  );
+END;
+$$ LANGUAGE plpgsql;
