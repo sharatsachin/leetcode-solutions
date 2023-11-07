@@ -1,0 +1,6 @@
+// https://leetcode.com/problems/employees-earning-more-than-their-managers
+
+-- Write your PostgreSQL query statement below
+SELECT E.name AS Employee
+FROM Employee E LEFT JOIN Employee M ON E.managerId = M.id
+WHERE E.salary > M.salary;
