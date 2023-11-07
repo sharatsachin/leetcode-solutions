@@ -1,0 +1,10 @@
+// https://leetcode.com/problems/consecutive-numbers
+
+-- Write your PostgreSQL query statement below
+WITH log_lag AS (
+    SELECT id, num, lag(num, 1) OVER(ORDER BY id ASC) AS num1, lag(num, 2) OVER(ORDER BY id ASC) AS num2
+    FROM logs
+)
+SELECT DISTINCT(num)  AS ConsecutiveNums 
+FROM log_lag
+WHERE num = num1 and num = num2;
